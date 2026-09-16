@@ -1,0 +1,327 @@
+
+SEMBRÁ
+EVOLUCIÓN
+Design
+ 
+System
+Portal Productor
+Relevamiento del estado actual + propuesta de mejora
+0. Cómo leer este documento
+Este documento tiene dos capas. La primera es la base: lo que el portal Productor hace hoy, relevado directamente de 29 capturas de pantalla reales. La segunda es la propuesta: una capa de mejora sobre esa base, pensada para unificar criterios y servir como contexto de diseño.
+Todo lo que no se puede confirmar con una captura de respaldo está marcado así y todo lo que es una idea nueva (no existe hoy en el portal) está marcado así: Ejemplo de propuesta nueva.  
+El objetivo final es que puedas pegar la sección 4 (Sistema de componentes) como contexto en Claude al momento de diseñar una pantalla nueva del portal, para que respete la marca y sea consistente con lo que ya existe.
+1. Alcance del relevamiento
+Perfil relevado: Productor (portal.sembraevolucion.com.ar/Productores).
+Perfiles Comercio y Semillero: no se relevaron en esta iteración, quedan pendientes. 
+29 capturas cubren 8 flujos: Home, Licencias, Movimientos de HT, Compra de HT (Soja/Trigo/Cebada), Facturación, Mis Compras, Precertificación (PPH + Establecimientos) y Cuenta 
+Granaria
+.
+El módulo Cesiones se relevó vacío (sin datos cargados), por lo que no se pudo observar su estado con contenido (para ese usuario de muestra)
+2. Fundamentos de marca (
+Brandbook
+ SE)
+Estos valores vienen del 
+Brandbook
+ oficial: cualquier pantalla nueva debe partir de acá.
+2.1 Paleta de color
+Color
+Rol
+HEX
+RGB
+Uso
+ 
+Verde lima (primario)
+#BFFF00
+191-255-0
+Acción, botones, cifras clave, acentos
+ 
+Naranja (acento oficial)
+#FFA945
+255-169-69
+Acento secundario, destaques, 
+cards
+ 
+Negro
+#1C1C1C
+28-28-28
+Fondos oscuros, texto sobre claro
+ 
+Gris claro
+#EEF1F7
+238-241-247
+Fondos de secciones claras, 
+cards
+ 
+Blanco
+#FFFFFF
+255-255-255
+Texto sobre fondos oscuros
+2.2 Tipografía
+Títulos: Montserrat (
+bold
+ para destacar).
+Cuerpo / párrafos: 
+Roboto
+.
+La tipografía actual no parece coincidir con Montserrat/
+Roboto
+ (aspecto de fuente de sistema tipo Arial/
+Helvetica
+). No se pudo confirmar el nombre exacto de fuente desde una imagen renderizada.  [No verificado] 
+2.3 Logo e iconografía de marca
+Logo: dos rombos entrelazados (cadena) + "SEMBRÁ" regular y "EVOLUCIÓN" 
+bold
+.
+Set propio de 8 íconos de dominio: Licencia, Hectárea Tecnológica, Semillas certificadas, Compra de HT, Genética, Biotecnología, Entrega de Semillas, Precertificación (PPH). Estilo línea dentro de círculo, borde verde lima.
+Los íconos de cultivo (espiga de cebada, vaina de soja, espiga de trigo) usados en los selectores del portal actual son de estilo consistente con la línea de marca, pero no forman parte del set de 8 íconos catalogados en el 
+Brandbook
+.
+3. Estado actual del portal Productor
+Estructura y componentes tal como existen hoy, relevados de las capturas reales.
+3.1 Anatomía de página
+Todas las pantallas relevadas comparten la misma estructura de tres bloques:
+Header superior (blanco): razón social + nombre de usuario con 
+dropdown
+ + botón circular de salir.
+Nav principal (negro): logo SE a la izquierda, menú horizontal en mayúsculas a la derecha (LICENCIAS / MOVIMIENTOS DE HT / MIS COMPRAS / PRECERTIFICACION / CUENTA GRANARIA / CESIONES). El ítem activo se resalta en verde lima con subrayado.
+Contenido: 
+breadcrumb
+ gris en mayúsculas pequeñas, título H1 en negro, y el cuerpo de la pantalla (
+cards
+, tablas o 
+steppers
+).
+Footer (negro): teléfono y email a la izquierda, botón 
+pill
+ "Contáctenos" (WhatsApp, verde lima) a la derecha.
+Home del Productor: 
+cards
+ de cultivo con cifra en verde lima, CTA contextual por cultivo ("
+Adherite
+ a PPH" / "Compra HT").
+3.2 Componentes identificados
+Componente
+Descripción
+Dónde aparece
+Stepper numerado
+Bloques apilados con número en círculo; el paso activo se expande con fondo negro y borde/texto verde lima
+Compra HT, Movimiento HT, Cuenta 
+Granaria
+Selector de cultivo
+3 íconos línea (Cebada/Soja/Trigo); selección = borde y texto verde lima
+Movimiento HT, Compra HT, Cuenta 
+Granaria
+Card oscura de métrica
+Fondo negro, cifra grande en verde lima, 
+label
+, botón 
+pill
+ de acción
+Home
+Tabla de datos
+Header gris claro, filas blancas, links en verde lima o azul, buscador con borde verde lima al foco, paginación con 
+pills
+Licencias, Facturación, Mis Compras
+Botón 
+pill
+Dos variantes: relleno verde lima / 
+outline
+ negro u 
+outline
+ verde lima
+En toda la plataforma
+Badge de estado
+Pill verde sólido para "Aprobada"; texto plano sin color para el resto de los estados (Pagada, Vencida, Facturada, etc.)
+Licencias, Facturación, Mis Compras, Cesiones
+Modal informativo
+Fondo blanco, título en 
+card
+ negra con texto verde lima, 
+checklist
+ con emoji, CTA 
+pill
+Home (aviso de campaña)
+Dropdown
+ de filtro
+Pill 
+outline
+ con flecha, lista blanca al desplegar
+Licencias, Facturación, Mis Compras
+Stepper de Compra de HT: paso activo expandido, opciones tipo 
+card
+ dentro del paso.
+Patrón de tabla: 
+header
+ gris, filas blancas, buscador, paginación 
+pill
+.
+Dropdown
+ de selección dentro de un 
+stepper
+ (Seleccionar Marca).
+Modal informativo sobre fondo de foto de campo, con 
+checklist
+ de emojis.
+Pantalla de detalle (Licencia): 
+header
+ con datos clave + 
+badge
+ de estado grande + lista de archivos.
+Pantalla de texto explicativo (PPH): dos columnas, sin elementos visuales de apoyo.
+3.3 Inconsistencias detectadas en el estado actual
+Los estados (Aprobada, Pagada, Vencida, Facturada, Cancelada por NC, Aplicada) no tienen un sistema de color unificado: solo "Aprobada" tiene 
+badge
+ verde sólido, el resto es texto plano.  
+El verde del 
+badge
+ "Aprobada" (tipo semáforo) es distinto del verde lima de marca — no está tomado de la paleta oficial.
+Los 
+links
+ de tabla (códigos de licencia, ID de compra) usan un azul de sistema, no un color de marca. 
+El ícono de teléfono en el 
+footer
+ usa un rosa/magenta que no pertenece a la paleta.  
+Hay dos caminos distintos para llegar a Compra HT y Facturación (
+nav
+ superior con submenú, y botones "Ver facturas"/"Ver licencias" repetidos dentro de la propia pantalla de compra), lo que puede generar confusión de jerarquía. 
+No hay un estado vacío diseñado: cuando una tabla no tiene datos (ej. "Detalle de Movimientos" en Cebada) se muestra la tabla con 
+headers
+ y ninguna fila, sin mensaje ni ilustración. 
+Los CTA primario y secundario dentro de una misma pantalla suelen compartir el mismo estilo (
+pill
+ verde lima), sin jerarquía visual clara entre acción principal y acciones de apoyo.
+4. Propuesta de mejora — Sistema de componentes
+Esta sección es la capa de propuesta. Parte de la base relevada en la sección 3 y de la paleta oficial del 
+Brandbook
+, y define reglas más consistentes para diseñar pantallas nuevas.
+4.1 Paleta ampliada (estados y semántica)
+Propuesta: sumar una paleta semántica acotada, derivada de la marca, para reemplazar los colores sueltos usados hoy en 
+badges
+ y links.  [Propuesta] 
+Color
+Token
+HEX sugerido
+Reemplaza a
+ 
+state-success
+ / aprobado
+#BFFF00 (sobre negro) o #1C1C1C sobre fondo lima
+Verde semáforo de "Aprobada"
+ 
+state-
+warning
+ / pendiente-vencida
+#FFA945
+Estados "Vencida" sin color
+ 
+state
+-error / cancelada
+#D64545 [Especulación, no es color de marca — requiere validación con equipo]
+"Cancelada por NC" sin color
+ 
+link
+ / interactivo
+#1C1C1C subrayado, o #BFFF00 sobre fondo oscuro
+Azul de sistema en links de tabla
+4.2 Botones — jerarquía
+Primario: 
+pill
+ relleno verde lima (#BFFF00), texto negro 
+bold
+. Una sola acción primaria por pantalla.
+Secundario: 
+pill
+ 
+outline
+ negro, texto negro. Para acciones de apoyo (Ver facturas, Ver licencias, Volver al inicio).
+Terciario / texto: sin fondo, subrayado al 
+hover
+. Para navegación auxiliar dentro de una tabla.  
+Regla: nunca dos botones primarios (
+pill
+ lima) en la misma vista.
+4.3 
+Badges
+ de estado
+Aprobada / Pagada / Aplicada → fondo verde lima, texto negro.
+Vencida / Pendiente → fondo naranja, texto negro.  [Propuesta] 
+Cancelada / Rechazada → fondo gris oscuro con texto blanco, o rojo a validar con equipo de marca.  [Propuesta] 
+Todos los 
+badges
+: mismo componente 
+pill
+, mismo 
+padding
+, mismo peso tipográfico — hoy solo "Aprobada" tiene ese tratamiento.  [Propuesta] 
+4.4 
+Steppers
+Mantener el patrón actual (funciona bien): paso activo con fondo negro, número en círculo verde lima, contenido expandido.
+Sumar un estado "completado" visualmente distinto del "activo" (hoy ambos pueden confundirse): 
+check
+ verde lima en el círculo en vez de número, paso colapsado con resumen de la selección hecha.  [Propuesta] 
+4.5 Tablas
+Mantener: 
+header
+ gris claro, buscador con borde verde lima al foco, paginación en 
+pills
+.
+Sumar estado vacío: ilustración simple + texto ("Todavía no 
+registrás
+ movimientos para este cultivo") en vez de una tabla con 
+headers
+ y cero filas.  [Propuesta] 
+Unificar el color de los 
+links
+ de fila (código, ID) a un solo token en vez del azul de sistema actual.  [Propuesta] 
+4.6 Tipografía y escala
+Títulos H1 de pantalla: Montserrat Bold, ~28-32pt.
+Subtítulos de sección / 
+breadcrumb
+: 
+Roboto
+, mayúsculas, ~11pt, gris.
+Cuerpo: 
+Roboto
+ Regular, ~14-16pt.
+Cifras destacadas (HT, totales): Montserrat Bold en verde lima, siguiendo el patrón ya usado en Home.  [Propuesta] 
+4.7 Iconografía
+Usar el set oficial de 8 íconos de marca para los módulos que ya cubre (Licencia, HT, Compra de HT, PPH, Genética, Biotecnología, Entrega de Semillas, Semillas certificadas).  [Propuesta] 
+Definir 3 íconos adicionales de cultivo (Cebada / Soja / Trigo) en el mismo estilo de línea, ya que hoy 
+existen
+ pero no están catalogados en el 
+Brandbook
+ — formalizarlos evita que cada pantalla nueva los redibuje distinto.  [Propuesta] 
+5. Cómo usar este documento en Claude
+Para diseñar una pantalla nueva del portal manteniendo consistencia, se recomienda pegar como contexto:
+La paleta de la sección 2.1 y 4.1 (colores exactos en HEX).
+La tipografía de la sección 2.2 / 4.6.
+El componente específico que se va a usar de la sección 3.2 o 4 (por ejemplo, "
+stepper
+" o "tabla").
+Un ejemplo visual de referencia (una de las capturas de este documento) cuando el componente ya existe hoy.
+Ejemplo de 
+prompt
+: "
+Diseñá
+ la pantalla de [nombre de pantalla] siguiendo el 
+design
+ 
+system
+ de Sembrá Evolución: paleta #BFFF00 / #FFA945 / #1C1C1C / #EEF1F7, tipografía Montserrat (títulos) + 
+Roboto
+ (cuerpo), usando el patrón de 
+stepper
+ de la sección 3.2 y 
+badges
+ de estado unificados de la sección 4.3."
+6. Pendientes y próximos pasos
+Relevar perfiles Comercio y Semillero (no cubiertos en esta iteración).  [Pendiente] 
+Confirmar con el equipo si la tipografía real implementada en el portal es Montserrat/
+Roboto
+ o una fuente de sistema distinta.  [Pendiente] 
+Validar con el equipo de marca los colores semánticos de error/cancelado propuestos en 4.1 (no están en el 
+Brandbook
+).  [Pendiente] 
+Sumar capturas de los estados vacíos, de error y de carga (
+loading
+) del portal, no cubiertos en el relevamiento actual.  [Pendiente] 
