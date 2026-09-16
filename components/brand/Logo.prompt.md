@@ -1,0 +1,1 @@
+Placeholder logo composition. Replace with the real vector asset when provided.

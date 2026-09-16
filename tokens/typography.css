@@ -1,0 +1,20 @@
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400 900;font-display:swap;src:url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aXpsog.woff2) format('woff2')}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v47/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmSlA.woff2) format('woff2')}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:500;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v47/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuaGSlA.woff2) format('woff2')}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/roboto/v47/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubGSlA.woff2) format('woff2')}
+:root{
+  --font-display:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-body:'Roboto',system-ui,-apple-system,'Segoe UI',sans-serif;
+
+  --fs-hero:44px; --lh-hero:52px;
+  --fs-h1:32px; --lh-h1:40px;
+  --fs-h2:24px; --lh-h2:32px;
+  --fs-h3:20px; --lh-h3:28px;
+  --fs-title:18px; --lh-title:26px;
+  --fs-body:16px; --lh-body:24px;
+  --fs-body-sm:14px; --lh-body-sm:20px;
+  --fs-caption:12px; --lh-caption:16px;
+  --fs-eyebrow:11px; --lh-eyebrow:14px;
+
+  --fw-regular:400/* @kind font */; --fw-medium:500/* @kind font */; --fw-bold:700/* @kind font */; --fw-black:800/* @kind font */;
+}

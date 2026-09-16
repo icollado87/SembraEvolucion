@@ -1,0 +1,112 @@
+<!-- @dsCard group="Navigation" name="Portal chrome · Mobile + Desktop" subtitle="Bottom nav + FAB + drawer / Top bar with submenus" viewport="1440x900" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>
+html,body{margin:0;padding:0;background:#F7F9FC;font-family:var(--font-body);color:var(--text-primary)}
+.stage{padding:32px;display:grid;grid-template-columns:390px 1fr;gap:32px;align-items:start;min-height:100vh}
+.mobile{width:390px;height:780px;background:#fff;border-radius:32px;border:10px solid #1C1C1C;overflow:hidden;position:relative;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(28,28,28,.2);transform:translateZ(0);contain:layout paint}
+.mobile-body{flex:1;overflow:hidden;position:relative;background:#EEF1F7;display:flex;flex-direction:column;transform:translateZ(0);contain:layout paint}
+.desktop{background:#fff;border-radius:12px;border:1px solid var(--border-default);overflow:hidden;box-shadow:0 8px 24px rgba(28,28,28,.06)}
+.desk-body{padding:32px;background:#EEF1F7;min-height:520px}
+.tag{position:absolute;top:12px;left:16px;font-family:var(--font-display);font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;background:#fff;padding:4px 8px;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);z-index:100}
+.frame-lbl{font-family:var(--font-display);font-weight:800;font-size:14px;letter-spacing:.08em;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px}
+h2.pageT{font-size:22px;margin:0 0 16px}
+.metric{background:#1C1C1C;color:#fff;border-radius:16px;padding:20px;text-align:center;margin-bottom:12px}
+.metric .n{font-family:var(--font-display);font-weight:800;font-size:56px;color:#BFFF00;line-height:1}
+.metric .l{color:#BFFF00;font-weight:700;font-size:12px;margin-top:6px}
+.metric .t{font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body>
+<div class="stage">
+  <div>
+    <div class="frame-lbl">Mobile · 375–428 px</div>
+    <div class="mobile"><div class="tag">MOBILE 390</div><div id="mobile-root" class="mobile-body"></div></div>
+  </div>
+  <div>
+    <div class="frame-lbl">Desktop · ≥ 1024 px</div>
+    <div class="desktop"><div id="desktop-root"></div></div>
+  </div>
+</div>
+
+<script type="text/babel">
+const { TopBar, BottomNav, Drawer } = window.DesignSystemSEMBRA_f9fdf7;
+
+const MOBILE_SECTIONS = [
+  {key:'home',label:'Inicio'},
+  {key:'lic',label:'Licencias'},
+  {key:'ht',label:'Movimientos de HT'},
+  {key:'compras',label:'Mis Compras',children:[
+    {key:'comprar',label:'Comprar HT'},
+    {key:'todas',label:'Todas mis compras'},
+    {key:'facturas',label:'Mis facturas'}
+  ]},
+  {key:'pph',label:'Precertificación',children:[
+    {key:'mispph',label:'Mis PPH'},
+    {key:'establ',label:'Mis establecimientos'}
+  ]},
+  {key:'cg',label:'Cuenta granaria'},
+  {key:'ces',label:'Cesiones'},
+  {key:'perfil',label:'Perfil'}
+];
+
+const DESKTOP_ITEMS = [
+  {key:'home',label:'Inicio'},
+  {key:'lic',label:'Licencias'},
+  {key:'ht',label:'Movimientos'},
+  {key:'compras',label:'Mis compras',children:[
+    {key:'comprar',label:'Comprar HT'},
+    {key:'todas',label:'Todas mis compras'},
+    {key:'facturas',label:'Mis facturas'}
+  ]},
+  {key:'pph',label:'Precertificación',children:[
+    {key:'mispph',label:'Mis PPH'},
+    {key:'establ',label:'Mis establecimientos'}
+  ]},
+  {key:'cg',label:'Cuenta granaria'},
+  {key:'ces',label:'Cesiones'}
+];
+
+function HomeContent({title='INICIO'}){
+  return (<div style={{padding:16,overflowY:'auto',flex:1}}>
+    <h2 className="pageT">Hola, Ignacio</h2>
+    <div className="metric"><div className="t">CEBADA</div><div className="n">120</div><div className="l">HT Futuras</div></div>
+    <div className="metric"><div className="t">TRIGO</div><div className="n">268</div><div className="l">HT Futuras</div></div>
+    <div className="metric"><div className="t">SOJA</div><div className="n">0</div><div className="l">HT Futuras</div></div>
+  </div>);
+}
+
+function MobileShell(){
+  const [active,setActive]=React.useState('home');
+  const [drawer,setDrawer]=React.useState(true);
+  return (<>
+    <TopBar mobile basePath="../.." onMenu={()=>setDrawer(true)}/>
+    <HomeContent/>
+    <BottomNav active={active} onNav={k=>{if(k==='mas'){setDrawer(true)}else setActive(k)}} onCompra={()=>setActive('comprar')}/>
+    <Drawer open={drawer} onClose={()=>setDrawer(false)} user={{name:'IGNACIO VIDAL',company:'LIAG ARGENTINA S.A.U.',initials:'IV'}} active={active} sections={MOBILE_SECTIONS} onNav={k=>{setActive(k);setDrawer(false)}}/>
+  </>);
+}
+
+function DesktopShell(){
+  const [active,setActive]=React.useState('home');
+  return (<div>
+    <TopBar company="LIAG ARGENTINA S.A.U." user="IGNACIO VIDAL" items={DESKTOP_ITEMS} active={active} onNav={setActive} basePath="../.."/>
+    <div className="desk-body">
+      <h2 style={{fontSize:26,margin:'0 0 20px'}}>Hola, Ignacio</h2>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+        {[{t:'CEBADA',n:'120'},{t:'TRIGO',n:'268'},{t:'SOJA',n:'0'}].map(m=>(
+          <div key={m.t} className="metric" style={{margin:0}}>
+            <div className="t">{m.t}</div><div className="n">{m.n}</div><div className="l">HT Futuras</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>);
+}
+
+ReactDOM.createRoot(document.getElementById('mobile-root')).render(<MobileShell/>);
+ReactDOM.createRoot(document.getElementById('desktop-root')).render(<DesktopShell/>);
+</script>
+</body></html>

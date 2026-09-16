@@ -1,0 +1,1 @@
+Icon-tile selector for crops. Selected tile: lime border + lime label. Icons are line-art in brand style.

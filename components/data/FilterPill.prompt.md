@@ -1,0 +1,1 @@
+Outline dropdown pill used on table filters (variedad, campaña).

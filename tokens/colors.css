@@ -1,0 +1,43 @@
+:root{
+  /* Brand */
+  --se-lime:#BFFF00;
+  --se-lime-hover:#A8E600;
+  --se-lime-pressed:#8FCC00;
+  --se-orange:#FFA945;
+  --se-orange-hover:#F09330;
+  --se-black:#1C1C1C;
+  --se-black-hover:#2E2E2E;
+  --se-gray-50:#F7F9FC;
+  --se-gray-100:#EEF1F7;
+  --se-gray-200:#DDE2EB;
+  --se-gray-300:#C3CAD6;
+  --se-gray-500:#8892A3;
+  --se-gray-700:#4A5261;
+  --se-white:#FFFFFF;
+
+  /* Semantic (proposal, per DS doc §4.1) */
+  --se-success:#BFFF00;
+  --se-success-fg:#1C1C1C;
+  --se-warning:#FFA945;
+  --se-warning-fg:#1C1C1C;
+  --se-danger:#D64545;
+  --se-danger-fg:#FFFFFF;
+  --se-neutral:#4A5261;
+  --se-neutral-fg:#FFFFFF;
+
+  /* Aliases */
+  --bg-app:#FFFFFF;
+  --bg-surface:#FFFFFF;
+  --bg-muted:#EEF1F7;
+  --bg-inverse:#1C1C1C;
+  --text-primary:#1C1C1C;
+  --text-muted:#4A5261;
+  --text-subtle:#8892A3;
+  --text-inverse:#FFFFFF;
+  --text-accent:#1C1C1C;
+  --border-default:#DDE2EB;
+  --border-strong:#1C1C1C;
+  --border-focus:#BFFF00;
+  --link:#1C1C1C;
+  --link-hover:#BFFF00;
+}

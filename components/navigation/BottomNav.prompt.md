@@ -1,0 +1,1 @@
+Mobile-only bottom navigation. 4 primary tabs + central FAB "HT" (Comprar HT). Tap targets are 64px tall; safe-area padding included. Fifth tab is "Más", which opens the <Drawer/>.

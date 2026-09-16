@@ -1,0 +1,1 @@
+Table pattern. Header uses `--se-gray-100`; row links use black underline (not system blue).

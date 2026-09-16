@@ -1,0 +1,1 @@
+Text input, 44px min touch-target. Focus ring uses `--se-lime`.

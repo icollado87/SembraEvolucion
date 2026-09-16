@@ -1,0 +1,1 @@
+Card surface. Use `dark` for metric/hero cards (mirrors the CEBADA/TRIGO/SOJA blocks on Home).

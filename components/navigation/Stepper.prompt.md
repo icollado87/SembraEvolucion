@@ -1,0 +1,1 @@
+Vertical stepper. Active step expands with black background + lime number; complete step collapses with check + summary of selection.

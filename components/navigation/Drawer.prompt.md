@@ -1,0 +1,1 @@
+Right-side drawer used when the user taps "Más" in the bottom nav. Accordions expand Mis Compras (Comprar / Todas / Facturas) and Precertificación (PPH / Establecimientos). All rows are ≥44px; the close button is a 44×44 outlined circle in the header.

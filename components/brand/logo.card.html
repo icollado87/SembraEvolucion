@@ -1,0 +1,67 @@
+<!-- @dsCard group="Brand" name="Logo" subtitle="Versiones autorizadas (brandbook)" viewport="900x460" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;font-family:var(--font-body);color:var(--text-primary)}.stage{padding:24px;min-height:100vh;display:flex;align-items:center;justify-content:center}.frame{padding:32px 48px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:100%}.tile{padding:20px;border:1px solid var(--border-default);border-radius:12px;display:flex;align-items:center;justify-content:center;min-height:110px}.tile.dark{background:#1C1C1C;border-color:#1C1C1C}.tile img{max-width:100%;max-height:56px;object-fit:contain}.lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-top:6px;text-align:center;font-weight:700}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="./tweaks-panel.jsx"></script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "mode": "showcase",
+  "variant": "full",
+  "background": "#FFFFFF",
+  "size": 80
+}/*EDITMODE-END*/;
+
+const VARIANTS = [
+  { id:'full',            file:'logo-full.png',                 label:'Full versión',      dark:false, ratio:1050/266 },
+  { id:'negativa',        file:'logo-negativo.png',             label:'Negativa',          dark:true,  ratio:1008/256 },
+  { id:'monocromo',       file:'logo-monocromo.svg',            label:'Monocromo negro',   dark:false, ratio:440/120 },
+  { id:'monocromoBlanco', file:'logo-monocromo-blanco.svg',     label:'Monocromo blanco',  dark:true,  ratio:440/120 },
+  { id:'vertical',        file:'logo-vertical.svg',             label:'Vertical',          dark:false, ratio:260/220 },
+  { id:'favicon',         file:'favicon.png',                 label:'Favicon (mark)',    dark:false, ratio:1 }
+];
+
+function LogoImg({variant, size}){
+  const v = VARIANTS.find(x=>x.id===variant) || VARIANTS[0];
+  const h = variant==='vertical' ? size*1.6 : size;
+  const w = h * v.ratio;
+  return <img src={`../../assets/logo/${v.file}`} alt="Sembrá Evolución" style={{height:h, width:w, display:'block', objectFit:'contain'}}/>;
+}
+
+function App(){
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const isDark = t.background==='#1C1C1C';
+  return (<>
+    <div className="stage" style={{background:t.background}}>
+      {t.mode==='single' ? (
+        <div className="frame"><LogoImg variant={t.variant} size={t.size}/></div>
+      ) : (
+        <div className="grid">
+          {VARIANTS.map(v=>(
+            <div key={v.id}>
+              <div className={'tile'+(v.dark?' dark':'')}><LogoImg variant={v.id} size={v.id==='favicon'?64:44}/></div>
+              <div className="lbl" style={{color:isDark?'#EEF1F7':undefined}}>{v.label}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    <TweaksPanel>
+      <TweakSection label="Vista"/>
+      <TweakRadio label="Modo" value={t.mode} options={['showcase','single']} onChange={v=>setTweak('mode',v)}/>
+      <TweakSection label="Logo"/>
+      <TweakSelect label="Versión" value={t.variant} options={VARIANTS.map(v=>({value:v.id,label:v.label}))} onChange={v=>setTweak('variant',v)}/>
+      <TweakSlider label="Tamaño" value={t.size} min={32} max={200} step={4} unit="px" onChange={v=>setTweak('size',v)}/>
+      <TweakSection label="Fondo"/>
+      <TweakColor label="Background" value={t.background} options={['#FFFFFF','#EEF1F7','#1C1C1C','#BFFF00']} onChange={v=>setTweak('background',v)}/>
+    </TweaksPanel>
+  </>);
+}
+
+const wait=()=>{if(window.useTweaks&&window.TweaksPanel){ReactDOM.createRoot(document.getElementById('root')).render(<App/>)}else setTimeout(wait,50)};
+wait();
+</script>
+</body></html>
